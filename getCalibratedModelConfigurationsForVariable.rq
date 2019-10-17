@@ -8,14 +8,14 @@ prefix sdm: <https://w3id.org/okn/o/sdm#>
 prefix sd: <https://w3id.org/okn/o/sd#>
 
 SELECT DISTINCT ?model ?desc ?version ?configuration ?calibration ?compLoc ?category
-from <http://ontosoft.isi.edu:3030/modelCatalog-1.0.0/data/mint> 
+from <http://ontosoft.isi.edu:3030/modelCatalog-1.1.0/data/mint@isi.edu> 
 WHERE {
   ?model a sdm:Model.
   ?model sd:hasVersion ?version.
   OPTIONAL{?model sdm:hasModelCategory ?category}.
   OPTIONAL{?model sd:description ?desc}.
   ?version sd:hasConfiguration ?configuration.
-  ?configuration sdm:hasCalibration ?calibration
+  ?configuration sd:hasSetup ?calibration
   OPTIONAL{?calibration sd:hasComponentLocation ?compLoc}.
   ?calibration sd:hasOutput ?output.
   ?output sd:hasPresentation ?vp.

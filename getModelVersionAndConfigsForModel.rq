@@ -8,7 +8,7 @@ prefix sdm: <https://w3id.org/okn/o/sdm#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 SELECT distinct ?version ?versionLabel ?versionId ?config ?configLabel ?calibration ?calibrationLabel
-from <http://ontosoft.isi.edu:3030/modelCatalog-1.0.0/data/mint> 
+from <http://ontosoft.isi.edu:3030/modelCatalog-1.1.0/data/mint@isi.edu>
 WHERE {
   ?_model_iri sd:hasVersion ?version.
   ?version rdfs:label ?versionLabel.
@@ -19,7 +19,7 @@ WHERE {
     ?version sd:hasConfiguration ?config.
     ?config rdfs:label ?configLabel.
     optional{?version sd:hasVersionId ?versionId.}
-  OPTIONAL{?config sdm:hasCalibration ?calibration.
+  OPTIONAL{?config sd:hasSetup ?calibration.
     ?calibration rdfs:label ?calibrationLabel}
   }
 }

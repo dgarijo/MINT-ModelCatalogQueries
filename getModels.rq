@@ -6,7 +6,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix sdm: <https://w3id.org/okn/o/sdm#>
 prefix sd: <https://w3id.org/okn/o/sd#>
 
-SELECT ?model ?label ?desc ?doc ?dateC ?dateP ?fundS ?contactP ?downloadURL ?faq ?installInstr ?purpose ?keywords ?logo ?memReq ?os ?procReq ?publisher ?referenceP ?shortDesc ?eq ?grid ?modelType ?sourceC ?pl
+SELECT ?model ?label ?desc ?doc ?dateC ?dateP ?fundS ?contactP ?downloadURL ?faq ?installInstr ?purpose ?keywords ?logo ?memReq ?os ?procReq ?publisher ?referenceP ?shortDesc ?eq ?grid ?modelType ?sourceC ?pl ?license
 (GROUP_CONCAT(DISTINCT ?as;SEPARATOR=', ') AS ?assumptions) (GROUP_CONCAT(DISTINCT ?r;SEPARATOR=', ') AS ?restrictions) (GROUP_CONCAT(DISTINCT ?cat;SEPARATOR=', ') AS ?categories) (GROUP_CONCAT(DISTINCT ?v;SEPARATOR=', ') AS ?versions)
 (GROUP_CONCAT(DISTINCT ?auth;SEPARATOR=', ') AS ?authors)
 (GROUP_CONCAT(DISTINCT ?cit;SEPARATOR=', ') AS ?citations)
@@ -15,7 +15,7 @@ SELECT ?model ?label ?desc ?doc ?dateC ?dateP ?fundS ?contactP ?downloadURL ?faq
 (GROUP_CONCAT(DISTINCT ?typicalD;SEPARATOR=', ') AS ?typicalDataSource)
 (GROUP_CONCAT(DISTINCT ?scr;SEPARATOR=', ') AS ?screenshots)
 (GROUP_CONCAT(DISTINCT ?explD;SEPARATOR=', ') AS ?explanationDiagrams)
-from <http://ontosoft.isi.edu:3030/modelCatalog-1.0.0/data/mint> 
+from <http://ontosoft.isi.edu:3030/modelCatalog-1.1.0/data/mint@isi.edu>
 WHERE {
   ?model a sdm:Model.
   ?model rdfs:label ?label.
@@ -33,7 +33,7 @@ WHERE {
   OPTIONAL{?model sd:contributor ?contrib}.
   OPTIONAL{?model sd:dateCreated ?dateC}.
   OPTIONAL{?model sd:datePublished ?dateP}.
-  OPTIONAL{?model sd:fundingSource	 ?fund.
+  OPTIONAL{?model sd:hasFunding/sd:fundingSource ?fund.
            ?fund rdfs:label ?fundS}.
   OPTIONAL{?model sd:hasContactPerson ?contact. 
             ?contact rdfs:label ?contactP}.
@@ -62,5 +62,6 @@ WHERE {
   OPTIONAL{?model sdm:hasEquation ?eq}.
   OPTIONAL{?model sdm:hasGrid ?grid}.
   OPTIONAL{?model sdm:hasExplanationDiagram ?explD}.
+  OPTIONAL{?model sd:license ?license}.
     
-}group by ?model ?label ?desc ?doc ?dateC ?dateP ?fundS ?contactP ?downloadURL ?faq ?installInstr ?purpose ?keywords ?logo ?memReq ?os ?procReq ?publisher ?referenceP ?shortDesc ?eq ?grid ?modelType ?pl ?sourceC
+}group by ?model ?label ?desc ?doc ?dateC ?dateP ?fundS ?contactP ?downloadURL ?faq ?installInstr ?purpose ?keywords ?logo ?memReq ?os ?procReq ?publisher ?referenceP ?shortDesc ?eq ?grid ?modelType ?pl ?sourceC ?license

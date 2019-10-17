@@ -1,0 +1,67 @@
+#+ method: GET
+#+ summary: Lighter version of the query that returns all metadata of a model version. 
+#+ defaults:
+#+   - modelV: https://w3id.org/okn/i/mint/pihm_v4
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix sdm: <https://w3id.org/okn/o/sdm#>
+prefix sd: <https://w3id.org/okn/o/sd#>
+
+SELECT ?_modelV_iri ?label ?vId ?desc ?doc ?dateC ?dateP ?fundS ?contactP ?downloadURL ?faq ?installInstr ?purpose ?keywords ?logo ?memReq ?os ?procReq ?publisher ?referenceP ?shortDesc ?eq ?grid ?_modelV_iriType ?sourceC ?pl ?license
+(GROUP_CONCAT(DISTINCT ?as;SEPARATOR=', ') AS ?assumptions) (GROUP_CONCAT(DISTINCT ?r;SEPARATOR=', ') AS ?restrictions) (GROUP_CONCAT(DISTINCT ?cat;SEPARATOR=', ') AS ?categories) (GROUP_CONCAT(DISTINCT ?c;SEPARATOR=', ') AS ?configurations)
+(GROUP_CONCAT(DISTINCT ?auth;SEPARATOR=', ') AS ?authors)
+(GROUP_CONCAT(DISTINCT ?cit;SEPARATOR=', ') AS ?citations)
+(GROUP_CONCAT(DISTINCT ?contrib;SEPARATOR=', ') AS ?contributors)
+(GROUP_CONCAT(DISTINCT ?sampleVis;SEPARATOR=', ') AS ?sampleVisualization)
+(GROUP_CONCAT(DISTINCT ?typicalD;SEPARATOR=', ') AS ?typicalDataSource)
+(GROUP_CONCAT(DISTINCT ?scr;SEPARATOR=', ') AS ?screenshots)
+(GROUP_CONCAT(DISTINCT ?explD;SEPARATOR=', ') AS ?explanationDiagrams)
+from <http://ontosoft.isi.edu:3030/modelCatalog-1.1.0/data/mint@isi.edu>
+WHERE {
+  ?_modelV_iri a sd:SoftwareVersion.
+  ?_modelV_iri rdfs:label ?label.
+  OPTIONAL{?_modelV_iri sd:hasVersionId ?vId}.
+  OPTIONAL{?_modelV_iri sd:hasAssumption ?as}.
+  OPTIONAL{?_modelV_iri sd:hasConstraint ?r}.
+  OPTIONAL{?_modelV_iri sd:description ?desc}.
+  OPTIONAL{?_modelV_iri sdm:hasModelCategory ?cat}.
+  OPTIONAL{?_modelV_iri sd:hasConfiguration ?c}.
+  OPTIONAL{?_modelV_iri sd:hasDocumentation ?doc}.
+  OPTIONAL{?_modelV_iri sd:author ?a.
+  		   ?a rdfs:label ?auth}.
+  OPTIONAL{?_modelV_iri sd:citation ?cit}.
+  OPTIONAL{?_modelV_iri sd:contributor ?contrib}.
+  OPTIONAL{?_modelV_iri sd:dateCreated ?dateC}.
+  OPTIONAL{?_modelV_iri sd:datePublished ?dateP}.
+  OPTIONAL{?_modelV_iri sd:hasFunding/sd:fundingSource ?fund.
+           ?fund rdfs:label ?fundS}.
+  OPTIONAL{?_modelV_iri sd:hasContactPerson ?contact. 
+            ?contact rdfs:label ?contactP}.
+  OPTIONAL{?_modelV_iri sd:hasDownloadURL ?downloadURL}.
+  OPTIONAL{?_modelV_iri sd:hasFAQ ?faq}.
+  OPTIONAL{?_modelV_iri sd:hasInstallationInstructions ?installInstr}.
+  OPTIONAL{?_modelV_iri sd:hasPurpose ?purpose}.
+  OPTIONAL{?_modelV_iri sd:hasSampleVisualization ?sample. ?sample <http://www.w3.org/ns/prov#value> ?sampleVis}.
+  OPTIONAL{?_modelV_iri sd:hasSourceCode ?s.
+           ?s sd:programmingLanguage ?pl.
+           ?s sd:codeRepository ?sourceC}.
+  OPTIONAL{?_modelV_iri sd:hasTypicalDataSource ?typicalD}.
+  OPTIONAL{?_modelV_iri sd:keywords ?keywords}.
+  OPTIONAL{?_modelV_iri sd:logo ?l. 
+  		   ?l <http://www.w3.org/ns/prov#value> ?logo}.
+  OPTIONAL{?_modelV_iri sd:memoryRequirements ?memReq}.
+  OPTIONAL{?_modelV_iri sd:operatingSystems ?os}.
+  OPTIONAL{?_modelV_iri sd:processorRequirements ?procReq}.
+  OPTIONAL{?_modelV_iri sd:publisher ?pub.
+           ?pub rdfs:label ?publisher}.
+  OPTIONAL{?_modelV_iri sd:referencePublication ?referenceP}.
+  OPTIONAL{?_modelV_iri sd:screenshot ?scr}.
+  OPTIONAL{?_modelV_iri sd:shortDescription ?shortDesc}.
+  OPTIONAL{?_modelV_iri sd:softwareRequirements ?softwareReq}.
+  OPTIONAL{?_modelV_iri sd:website ?web}.
+  OPTIONAL{?_modelV_iri sdm:hasEquation ?eq}.
+  OPTIONAL{?_modelV_iri sdm:hasGrid ?grid}.
+  OPTIONAL{?_modelV_iri sdm:hasExplanationDiagram ?explD}.
+  OPTIONAL{?_modelV_iri sd:license ?license}.
+    
+}group by ?_modelV_iri ?label ?vId ?desc ?doc ?dateC ?dateP ?fundS ?contactP ?downloadURL ?faq ?installInstr ?purpose ?keywords ?logo ?memReq ?os ?procReq ?publisher ?referenceP ?shortDesc ?eq ?grid ?_modelV_iriType ?pl ?sourceC ?license
