@@ -1,0 +1,16 @@
+#+ method: GET
+#+ summary: Query that given a region URI, returns the model configurations that belong to it.
+#+ defaults:
+#+   - region: https://w3id.org/okn/i/mint/Pongo_Basin_SS
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix sdm: <https://w3id.org/okn/o/sdm#>
+prefix sd: <https://w3id.org/okn/o/sd#>
+
+SELECT DISTINCT ?modelConfig ?setup
+from <http://ontosoft.isi.edu:3030/modelCatalog-1.1.0/data/mint@isi.edu>
+WHERE {
+  ?modelConfig a sdm:ModelConfiguration.
+  ?modelConfig sd:hasSetup ?setup.
+  ?setup sdm:hasRegion ?_region_iri.
+}
