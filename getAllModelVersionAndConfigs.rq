@@ -23,7 +23,7 @@ WHERE {
        ?version sd:hasConfiguration ?config.
        ?config rdfs:label ?configLabel.
        OPTIONAL {
-         ?config sdm:hasSetup ?calibration.
+         ?config sd:hasSetup ?calibration.
          ?calibration rdfs:label ?calibrationLabel
        }
    }
