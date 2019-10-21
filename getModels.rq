@@ -6,7 +6,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix sdm: <https://w3id.org/okn/o/sdm#>
 prefix sd: <https://w3id.org/okn/o/sd#>
 
-SELECT ?model ?label ?desc ?doc ?dateC ?dateP ?fundS ?contactP ?downloadURL ?faq ?installInstr ?purpose ?keywords ?logo ?memReq ?os ?procReq ?publisher ?referenceP ?shortDesc ?eq ?grid ?modelType ?sourceC ?pl ?license 
+SELECT ?model ?label ?desc ?doc ?dateC ?dateP ?fundS ?contactP ?downloadURL ?faq ?installInstr ?purpose ?keywords ?logo ?memReq ?os ?procReq ?publisher ?referenceP ?shortDesc ?eq ?grid ?modelType ?sourceC ?pl ?license ?example
 (GROUP_CONCAT(DISTINCT ?as;SEPARATOR=', ') AS ?assumptions) (GROUP_CONCAT(DISTINCT ?r;SEPARATOR=', ') AS ?restrictions) (GROUP_CONCAT(DISTINCT ?cat;SEPARATOR=', ') AS ?categories) (GROUP_CONCAT(DISTINCT ?v;SEPARATOR=', ') AS ?versions)
 (GROUP_CONCAT(DISTINCT ?auth;SEPARATOR=', ') AS ?authors)
 (GROUP_CONCAT(DISTINCT ?cit;SEPARATOR=', ') AS ?citations)
@@ -65,5 +65,6 @@ WHERE {
   OPTIONAL{?model sdm:hasExplanationDiagram ?explD}.
   OPTIONAL{?model sd:license ?license}.
   OPTIONAL{?model sdm:usefulForCalculatingIndex ?index}.
+  OPTIONAL{?model sd:hasExample ?example}.
     
-}group by ?model ?label ?desc ?doc ?dateC ?dateP ?fundS ?contactP ?downloadURL ?faq ?installInstr ?purpose ?keywords ?logo ?memReq ?os ?procReq ?publisher ?referenceP ?shortDesc ?eq ?grid ?modelType ?pl ?sourceC ?license 
+}group by ?model ?label ?desc ?doc ?dateC ?dateP ?fundS ?contactP ?downloadURL ?faq ?installInstr ?purpose ?keywords ?logo ?memReq ?os ?procReq ?publisher ?referenceP ?shortDesc ?eq ?grid ?modelType ?pl ?sourceC ?license ?example
