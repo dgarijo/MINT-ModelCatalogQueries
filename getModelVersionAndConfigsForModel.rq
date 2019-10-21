@@ -1,5 +1,5 @@
 #+ method: GET
-#+ summary: Query that given a model returns its versions and configurations and calibrations. Results are not grouped because calibrations may belong only to certain configurations.
+#+ summary: Query that given a model returns its versions and configurations and setups. Results are not grouped because setups may belong only to certain configurations.
 #+ defaults:
 #+   - model: https://w3id.org/okn/i/mint/ECONOMIC_AGGREGATE_CROP_SUPPLY
 
