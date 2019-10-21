@@ -5,8 +5,9 @@
 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix sd: <https://w3id.org/okn/o/sd#>
+prefix sdm: <https://w3id.org/okn/o/sdm#>
 
-SELECT  DISTINCT  ?p ?paramlabel ?description ?defaultvalue ?fixedValue ?pdatatype ?ptype ?minVal ?maxVal ?position ?var ?unit
+SELECT  DISTINCT  ?p ?paramlabel ?description ?defaultvalue ?fixedValue ?pdatatype ?ptype ?minVal ?maxVal ?position ?var ?unit ?intervention ?interventionDesc
 from <http://ontosoft.isi.edu:3030/modelCatalog-1.1.0/data/mint@isi.edu> 
 WHERE {
   ?_config_iri sd:hasParameter ?p.
@@ -22,4 +23,7 @@ WHERE {
   OPTIONAL {?p sd:position ?position.}
   OPTIONAL {?p sd:adjustsVariable ?var}
   OPTIONAL {?p sd:usesUnit ?u. ?u rdfs:label ?unit.}
+  OPTIONAL {?p sdm:relevantForIntervention ?i.
+            ?i rdfs:label ?intervention;
+               sd:description ?interventionDesc.}
 }
