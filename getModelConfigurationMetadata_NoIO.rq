@@ -25,8 +25,7 @@ SELECT ?label ?compLoc ?desc (GROUP_CONCAT(DISTINCT ?processLabel;SEPARATOR=', '
 (GROUP_CONCAT(DISTINCT ?sampleRes;SEPARATOR=', ') AS ?sampleResults)
 from <http://ontosoft.isi.edu:3030/modelCatalog-1.1.0/data/mint@isi.edu>
 WHERE {
-  ?_modelConfig_iri a sdm:ModelConfiguration;
-    rdfs:label ?label.
+  ?_modelConfig_iri rdfs:label ?label.
   OPTIONAL{?_modelConfig_iri sd:hasComponentLocation ?compLoc}.
   OPTIONAL{?_modelConfig_iri sd:description ?desc}.
   OPTIONAL{?_modelConfig_iri sd:hasConstraint ?c}.
@@ -34,8 +33,8 @@ WHERE {
   OPTIONAL{?_modelConfig_iri sdm:hasCausalDiagram ?cags}.
   OPTIONAL{
     ?_modelConfig_iri sdm:hasOutputTimeInterval ?ti.
-    ?ti sd:usesUnit ?tu;
-        <http://www.w3.org/ns/prov#value> ?tIValue.
+    ?ti sdm:intervalUnit ?tu;
+        sdm:intervalValue ?tIValue.
     ?tu rdfs:label ?tIUnits.
   }.
   OPTIONAL{?_modelConfig_iri sdm:hasGrid ?grid.

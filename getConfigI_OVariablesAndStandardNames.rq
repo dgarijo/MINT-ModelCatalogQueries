@@ -23,7 +23,7 @@ WHERE {
   OPTIONAL {?io sd:position ?position.}
   OPTIONAL {?io sd:hasFixedResource ?fv.
             ?fv sd:dataCatalogIdentifier ?fixedValueDCId.
-            ?fv <http://www.w3.org/ns/prov#value> ?fixedValueURL.}
+            ?fv sd:value ?fixedValueURL.}
   ?io a ?type.
   ?io rdfs:label ?iolabel.
   FILTER(?type != sd:DatasetSpecification).

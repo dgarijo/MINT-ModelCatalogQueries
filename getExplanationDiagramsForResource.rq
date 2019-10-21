@@ -6,14 +6,13 @@
 prefix sd: <https://w3id.org/okn/o/sd#>
 prefix sdm: <https://w3id.org/okn/o/sdm#>
 prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-prefix prov: <http://www.w3.org/ns/prov#>
 
 SELECT distinct ?img ?label ?url ?desc ?source
 from <http://ontosoft.isi.edu:3030/modelCatalog-1.1.0/data/mint@isi.edu> 
 WHERE {
   ?_v_iri sdm:hasExplanationDiagram ?img .
   ?img rdfs:label ?label.
-  ?img prov:value ?url.
+  ?img sd:value ?url.
   OPTIONAL{?img sd:description ?desc}
-  OPTIONAL{?img prov:hadPrimarySource ?source}
+  OPTIONAL{?img sd:hadPrimarySource ?source}
 }

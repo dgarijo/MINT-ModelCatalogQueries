@@ -41,14 +41,14 @@ WHERE {
   OPTIONAL{?model sd:hasFAQ ?faq}.
   OPTIONAL{?model sd:hasInstallationInstructions ?installInstr}.
   OPTIONAL{?model sd:hasPurpose ?purpose}.
-  OPTIONAL{?model sd:hasSampleVisualization ?sample. ?sample <http://www.w3.org/ns/prov#value> ?sampleVis}.
+  OPTIONAL{?model sd:hasSampleVisualization ?sample. ?sample sd:value ?sampleVis}.
   OPTIONAL{?model sd:hasSourceCode ?s.
            ?s sd:programmingLanguage ?pl.
            ?s sd:codeRepository ?sourceC}.
   OPTIONAL{?model sd:hasTypicalDataSource ?typicalD}.
   OPTIONAL{?model sd:keywords ?keywords}.
   OPTIONAL{?model sd:logo ?l. 
-  		   ?l <http://www.w3.org/ns/prov#value> ?logo}.
+  		   ?l sd:value ?logo}.
   OPTIONAL{?model sd:memoryRequirements ?memReq}.
   OPTIONAL{?model sd:operatingSystems ?os}.
   OPTIONAL{?model sd:processorRequirements ?procReq}.

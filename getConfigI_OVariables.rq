@@ -21,7 +21,7 @@ WHERE {
   OPTIONAL {?io sd:description ?ioDescription}
   OPTIONAL {?io sd:hasDimensionality ?dim}
   OPTIONAL {?io sd:hasFixedResource ?fv.
-            ?fv <http://www.w3.org/ns/prov#value> ?fixedValueURL.}
+            ?fv sd:value ?fixedValueURL.}
   ?io a ?type.
   ?io rdfs:label ?iolabel.
   FILTER(?type != sd:DatasetSpecification).

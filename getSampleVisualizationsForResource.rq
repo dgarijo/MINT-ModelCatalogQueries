@@ -4,7 +4,6 @@
 #+   - v: https://w3id.org/okn/i/mint/CYCLES
 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX prov: <http://www.w3.org/ns/prov#>
 prefix sdm: <https://w3id.org/okn/o/sdm#>
 prefix sd: <https://w3id.org/okn/o/sd#>
 
@@ -12,9 +11,9 @@ select ?url ?description ?source ?modelSource
 from <http://ontosoft.isi.edu:3030/modelCatalog-1.1.0/data/mint@isi.edu>
 where {
 	?_v_iri sd:hasSampleVisualization ?sample. 
-    ?sample <http://www.w3.org/ns/prov#value> ?url.
+    ?sample sd:value ?url.
     ?sample rdfs:label ?label.
     ?sample sd:description ?description.
-    optional {?sample prov:hadPrimarySource ?source}.
+    optional {?sample sd:hadPrimarySource ?source}.
     optional {?sample sd:wasDerivedFromSoftware ?modelSource}
 }

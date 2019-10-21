@@ -41,14 +41,14 @@ WHERE {
   OPTIONAL{?_modelV_iri sd:hasFAQ ?faq}.
   OPTIONAL{?_modelV_iri sd:hasInstallationInstructions ?installInstr}.
   OPTIONAL{?_modelV_iri sd:hasPurpose ?purpose}.
-  OPTIONAL{?_modelV_iri sd:hasSampleVisualization ?sample. ?sample <http://www.w3.org/ns/prov#value> ?sampleVis}.
+  OPTIONAL{?_modelV_iri sd:hasSampleVisualization ?sample. ?sample sd:value ?sampleVis}.
   OPTIONAL{?_modelV_iri sd:hasSourceCode ?s.
            ?s sd:programmingLanguage ?pl.
            ?s sd:codeRepository ?sourceC}.
   OPTIONAL{?_modelV_iri sd:hasTypicalDataSource ?typicalD}.
   OPTIONAL{?_modelV_iri sd:keywords ?keywords}.
   OPTIONAL{?_modelV_iri sd:logo ?l. 
-  		   ?l <http://www.w3.org/ns/prov#value> ?logo}.
+  		   ?l sd:value ?logo}.
   OPTIONAL{?_modelV_iri sd:memoryRequirements ?memReq}.
   OPTIONAL{?_modelV_iri sd:operatingSystems ?os}.
   OPTIONAL{?_modelV_iri sd:processorRequirements ?procReq}.
