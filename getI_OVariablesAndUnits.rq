@@ -7,7 +7,7 @@ prefix sdm: <https://w3id.org/okn/o/sdm#>
 prefix sd: <https://w3id.org/okn/o/sd#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
-SELECT distinct ?vp ?label ?shortName ?longName ?description ?unit ?sn ?rl
+SELECT distinct ?vp ?label ?shortName ?longName ?description ?unit ?sn ?snURI ?rl 
 from <http://ontosoft.isi.edu:3030/modelCatalog-1.1.0/data/mint@isi.edu> 
 WHERE {
   ?_io_iri sd:hasPresentation ?vp.
@@ -19,6 +19,6 @@ WHERE {
   OPTIONAL{?vp sd:description ?description.}.
   OPTIONAL{?vp sd:hasLongName ?longName.}.
   OPTIONAL{?vp sd:hasShortName ?shortName.}.
-  OPTIONAL{?vp sd:hasStandardVariable ?svn. ?svn rdfs:label ?sn}.
+  OPTIONAL{?vp sd:hasStandardVariable ?snURI. ?snURI rdfs:label ?sn}.
   OPTIONAL{?vp sd:hasRelevanceLevel ?rl.}.
 }
