@@ -1,0 +1,14 @@
+#+ method: GET
+#+ summary: Given a standard name (?_std_string), this query returns its available description (if any)
+#+ defaults:
+#+   - std: soil__residual_porosity
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX schema: <https://schema.org/>
+
+SELECT DISTINCT ?description
+from <http://ontosoft.isi.edu:3030/modelCatalog-1.1.0/data/mint@isi.edu> 
+WHERE {
+  ?sv rdfs:label ?_std_string; 
+      schema:description ?description.
+}
