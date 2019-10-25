@@ -16,8 +16,15 @@ WHERE {
   OPTIONAL{?model sd:description ?desc}.
   ?version sd:hasConfiguration ?configuration.
   OPTIONAL{?configuration sd:hasComponentLocation ?compLoc}.
+  {
   ?configuration sd:hasOutput ?output.
   ?output sd:hasPresentation ?vp.
   ?vp sd:hasStandardVariable ?sv.
   ?sv rdfs:label ?_std_string.
+}
+UNION
+{
+    ?model sdm:usefulForCalculatingIndex ?sv.
+    ?sv rdfs:label ?_std_string.
+}
 }
