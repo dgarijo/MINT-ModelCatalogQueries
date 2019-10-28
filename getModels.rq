@@ -1,6 +1,6 @@
 #+ method: GET
 
-#+ summary: Query that returns a label, description, documentation, assumptions, restrictions, category and versions of each model
+#+ summary: Query that returns a label, description, documentation, assumptions, restrictions, category, regions with configurations/setups and versions of each model. 
 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix sdm: <https://w3id.org/okn/o/sdm#>
@@ -16,6 +16,7 @@ SELECT ?model ?label ?desc ?doc ?dateC ?dateP ?fundS ?contactP ?downloadURL ?faq
 (GROUP_CONCAT(DISTINCT ?scr;SEPARATOR=', ') AS ?screenshots)
 (GROUP_CONCAT(DISTINCT ?explD;SEPARATOR=', ') AS ?explanationDiagrams)
 (GROUP_CONCAT(DISTINCT ?index;SEPARATOR=', ') AS ?indices)
+(GROUP_CONCAT(DISTINCT ?region;SEPARATOR=', ') AS ?regions)
 from <http://ontosoft.isi.edu:3030/modelCatalog-1.1.0/data/mint@isi.edu>
 WHERE {
   ?model a sdm:Model.
@@ -66,5 +67,6 @@ WHERE {
   OPTIONAL{?model sd:license ?license}.
   OPTIONAL{?model sdm:usefulForCalculatingIndex ?index}.
   OPTIONAL{?model sd:hasExample ?example}.
+  OPTIONAL{?model sd:hasVersion/sd:hasConfiguration/sd:hasSetup/sdm:hasRegion/rdfs:label ?region.}.
     
 }group by ?model ?label ?desc ?doc ?dateC ?dateP ?fundS ?contactP ?downloadURL ?faq ?installInstr ?purpose ?keywords ?logo ?memReq ?os ?procReq ?publisher ?referenceP ?shortDesc ?eq ?grid ?modelType ?pl ?sourceC ?license ?example
