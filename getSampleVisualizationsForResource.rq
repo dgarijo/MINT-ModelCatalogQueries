@@ -8,7 +8,7 @@ prefix sdm: <https://w3id.org/okn/o/sdm#>
 prefix sd: <https://w3id.org/okn/o/sd#>
 
 select ?url ?description ?source ?modelSource
-from <http://ontosoft.isi.edu:3030/modelCatalog-1.1.0/data/mint@isi.edu>
+from <http://ontosoft.isi.edu:3030/modelCatalog-1.2.0/data/mint@isi.edu>
 where {
 	?_v_iri sd:hasSampleVisualization ?sample. 
     ?sample sd:value ?url.

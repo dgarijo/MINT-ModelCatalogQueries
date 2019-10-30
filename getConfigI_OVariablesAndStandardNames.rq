@@ -8,7 +8,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 
 SELECT  DISTINCT  ?prop ?io ?iolabel ?ioDescription ?format ?type ?dim ?position ?fixedValueURL ?fixedValueLabel ?fixedValueDCId ?vp ?st ?units ?rl
-from <http://ontosoft.isi.edu:3030/modelCatalog-1.1.0/data/mint@isi.edu>  
+from <http://ontosoft.isi.edu:3030/modelCatalog-1.2.0/data/mint@isi.edu>  
 WHERE {
   {
     ?_config_iri sd:hasInput ?io.
