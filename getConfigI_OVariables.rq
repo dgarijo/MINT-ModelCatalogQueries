@@ -6,11 +6,19 @@
 prefix sd: <https://w3id.org/okn/o/sd#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
-SELECT  DISTINCT  ?prop ?io ?iolabel ?ioDescription ?format ?type ?dim ?fixedValueURL ?position
+SELECT  DISTINCT  ?prop ?io ?iolabel ?ioDescription ?format ?type ?dim  ?position
+(GROUP_CONCAT(DISTINCT ?fixedVURL;SEPARATOR=', ') AS ?fixedValueURL)
 from <http://ontosoft.isi.edu:3030/modelCatalog-1.2.0/data/mint@isi.edu> 
 WHERE {
+  
   {
     ?_config_iri sd:hasInput ?io.
+      OPTIONAL {?io sd:hasFixedResource ?fv.
+        ?fv sd:value ?fixedVURL.}
+      OPTIONAL {
+        ?io sd:hasFixedResource ?fv.
+        ?fv sd:hasPart/sd:value ?fixedVURL.
+      }
   }UNION
   {
     ?_config_iri sd:hasOutput ?io.
@@ -20,9 +28,9 @@ WHERE {
   OPTIONAL {?io sd:position ?position.}
   OPTIONAL {?io sd:description ?ioDescription}
   OPTIONAL {?io sd:hasDimensionality ?dim}
-  OPTIONAL {?io sd:hasFixedResource ?fv.
-            ?fv sd:value ?fixedValueURL.}
+  
   ?io a ?type.
   ?io rdfs:label ?iolabel.
   FILTER(?type != sd:DatasetSpecification).
 }
+group by ?prop ?io ?iolabel ?ioDescription ?format ?type ?dim  ?position

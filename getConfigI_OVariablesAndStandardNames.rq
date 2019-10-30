@@ -7,11 +7,27 @@ prefix sd: <https://w3id.org/okn/o/sd#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 
-SELECT  DISTINCT  ?prop ?io ?iolabel ?ioDescription ?format ?type ?dim ?position ?fixedValueURL ?fixedValueLabel ?fixedValueDCId ?vp ?st ?units ?rl
+SELECT  DISTINCT  ?prop ?io ?iolabel ?ioDescription ?format ?type ?dim ?position ?vp ?st ?units ?rl
+(GROUP_CONCAT(DISTINCT ?fixedVURL;SEPARATOR=', ') AS ?fixedValueURL)
+(GROUP_CONCAT(DISTINCT ?fixedVLabel;SEPARATOR=', ') AS ?fixedValueLabel)
+(GROUP_CONCAT(DISTINCT ?fixedVDCId;SEPARATOR=', ') AS ?fixedValueDCId)
 from <http://ontosoft.isi.edu:3030/modelCatalog-1.2.0/data/mint@isi.edu>  
 WHERE {
   {
     ?_config_iri sd:hasInput ?io.
+    OPTIONAL {
+        ?io sd:hasFixedResource ?fv.
+        ?fv rdfs:label ?fixedVLabel.
+        ?fv sd:dataCatalogIdentifier ?fixedVDCId.
+        ?fv sd:value ?fixedVURL.
+    }
+    OPTIONAL {
+  	  ?io sd:hasFixedResource ?fv.
+      ?fv sd:hasPart ?p.
+      ?p rdfs:label ?fixedVLabel.
+      ?p sd:dataCatalogIdentifier ?fixedVDCId.
+      ?p sd:value ?fixedVURL.
+    }
   }UNION
   {
     ?_config_iri sd:hasOutput ?io.
@@ -21,10 +37,6 @@ WHERE {
   OPTIONAL {?io sd:hasDimensionality ?dim}
   OPTIONAL {?io sd:description ?ioDescription}
   OPTIONAL {?io sd:position ?position.}
-  OPTIONAL {?io sd:hasFixedResource ?fv.
-            ?fv rdfs:label ?fixedValueLabel.
-            ?fv sd:dataCatalogIdentifier ?fixedValueDCId.
-            ?fv sd:value ?fixedValueURL.}
   ?io a ?type.
   ?io rdfs:label ?iolabel.
   FILTER(?type != sd:DatasetSpecification).
@@ -32,3 +44,4 @@ WHERE {
   OPTIONAL {?io sd:hasPresentation ?vp.?vp sd:usesUnit ?u. ?u rdfs:label ?units.}
   OPTIONAL {?io sd:hasPresentation ?vp.?vp sd:hasRelevanceLevel ?rl.}
 }
+group by ?prop ?io ?iolabel ?ioDescription ?format ?type ?dim  ?position ?vp ?st ?units ?rl
