@@ -21,7 +21,7 @@ WHERE {
   OPTIONAL {?p sd:hasMaximumAcceptedValue ?maxVal.}
   OPTIONAL {?p sd:hasFixedValue ?fixedValue.}
   OPTIONAL {?p sd:position ?position.}
-  OPTIONAL {?p sd:adjustsVariable ?var.?var sd:hasStandardVariable ?standardV}
+  OPTIONAL {?p sd:adjustsVariable ?var.?var sd:hasStandardVariable/rdfs:label ?standardV}
   OPTIONAL {?p sd:usesUnit ?u. ?u rdfs:label ?unit.}
   OPTIONAL {?p sdm:relevantForIntervention ?i.
             ?i rdfs:label ?intervention;
