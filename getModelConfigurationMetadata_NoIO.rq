@@ -7,7 +7,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix sdm: <https://w3id.org/okn/o/sdm#>
 prefix sd: <https://w3id.org/okn/o/sd#>
 
-SELECT ?label ?compLoc ?desc (GROUP_CONCAT(DISTINCT ?processLabel;SEPARATOR=', ') AS ?processes) (GROUP_CONCAT(DISTINCT ?c;SEPARATOR=', ') AS ?constraints) ?tIUnits ?tIValue ?dateC ?dateP ?fundS ?fundLabel ?contactP ?downloadURL ?faq ?installInstr ?purpose ?keywords ?logo ?memReq ?os ?procReq ?publisher ?referenceP ?shortDesc ?eq ?gridType ?gridDim ?gridSpatial ?calibMethod ?resultTable ?regionName ?paramAssignMethod ?dImg ?pLanguage ?repo
+SELECT ?label ?compLoc ?desc (GROUP_CONCAT(DISTINCT ?processLabel;SEPARATOR=', ') AS ?processes) (GROUP_CONCAT(DISTINCT ?c;SEPARATOR=', ') AS ?constraints) ?tIUnits ?tIValue ?dateC ?dateP ?fundS ?fundLabel ?contactP ?downloadURL ?faq ?installInstr ?purpose ?keywords ?logo ?memReq ?os ?procReq ?publisher ?referenceP ?shortDesc ?eq ?gridType ?gridDim ?gridSpatial ?calibMethod ?resultTable ?regionName ?regionCountry ?paramAssignMethod ?dImg ?pLanguage ?repo
 (GROUP_CONCAT(DISTINCT ?cags;SEPARATOR=', ') AS ?cag)
 (GROUP_CONCAT(DISTINCT ?auth;SEPARATOR=', ') AS ?authors)
 (GROUP_CONCAT(DISTINCT ?cit;SEPARATOR=', ') AS ?citations)
@@ -79,10 +79,11 @@ WHERE {
   OPTIONAL{?_modelConfig_iri sdm:hasExpertTunedModel ?expertTuned}
   OPTIONAL{?_modelConfig_iri sdm:hasModelResultTable ?resultTable}
   OPTIONAL{?_modelConfig_iri sdm:hasRegion ?region.
-           ?region rdfs:label ?regionName}
+           ?region rdfs:label ?regionName.
+           ?region sdm:country ?regionCountry}
   OPTIONAL{?_modelConfig_iri sdm:parameterAssignmentMethod ?paramAssignMethod}
   OPTIONAL{?_modelConfig_iri sdm:compatibleVisualizationSoftware ?visSoft}
   OPTIONAL{?_modelConfig_iri sdm:hasSampleExecution ?sampleEx}
   OPTIONAL{?_modelConfig_iri sdm:hasSampleResult ?sampleRes}
   
-}GROUP BY ?label ?desc ?tIUnits ?tIValue ?compLoc ?tIUnits ?tIValue ?dateC ?dateP ?fundS ?contactP ?downloadURL ?faq ?installInstr ?purpose ?keywords ?logo ?memReq ?os ?procReq ?publisher ?referenceP ?shortDesc ?eq ?gridType ?gridDim ?gridSpatial ?calibMethod ?resultTable ?regionName ?paramAssignMethod ?dImg ?pLanguage ?repo ?fundLabel
+}GROUP BY ?label ?desc ?tIUnits ?tIValue ?compLoc ?tIUnits ?tIValue ?dateC ?dateP ?fundS ?contactP ?downloadURL ?faq ?installInstr ?purpose ?keywords ?logo ?memReq ?os ?procReq ?publisher ?referenceP ?shortDesc ?eq ?gridType ?gridDim ?gridSpatial ?calibMethod ?resultTable ?regionName ?regionCountry ?paramAssignMethod ?dImg ?pLanguage ?repo ?fundLabel
