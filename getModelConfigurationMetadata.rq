@@ -7,7 +7,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix sdm: <https://w3id.org/okn/o/sdm#>
 prefix sd: <https://w3id.org/okn/o/sd#>
 
-SELECT ?label ?compLoc ?desc (GROUP_CONCAT(DISTINCT ?input;SEPARATOR=', ') AS ?input_variables) (GROUP_CONCAT(DISTINCT ?output;SEPARATOR=', ') AS ?output_variables) (GROUP_CONCAT(DISTINCT ?param;SEPARATOR=', ') AS ?parameters)(GROUP_CONCAT(DISTINCT ?module;SEPARATOR=', ') AS ?modules) (GROUP_CONCAT(DISTINCT ?processLabel;SEPARATOR=', ') AS ?processes) (GROUP_CONCAT(DISTINCT ?c;SEPARATOR=', ') AS ?constraints) ?tIUnits ?tIValue ?dateC ?dateP ?fundS ?fundLabel ?contactP ?downloadURL ?faq ?installInstr ?purpose ?keywords ?logo ?memReq ?os ?procReq ?publisher ?referenceP ?shortDesc ?eq ?gridType ?gridDim ?gridSpatial ?calibMethod ?resultTable ?regionName ?regionCountry ?paramAssignMethod ?dImg ?pLanguage ?repo
+SELECT ?label ?compLoc ?desc ?usageNotes (GROUP_CONCAT(DISTINCT ?input;SEPARATOR=', ') AS ?input_variables) (GROUP_CONCAT(DISTINCT ?output;SEPARATOR=', ') AS ?output_variables) (GROUP_CONCAT(DISTINCT ?param;SEPARATOR=', ') AS ?parameters)(GROUP_CONCAT(DISTINCT ?module;SEPARATOR=', ') AS ?modules) (GROUP_CONCAT(DISTINCT ?processLabel;SEPARATOR=', ') AS ?processes) (GROUP_CONCAT(DISTINCT ?c;SEPARATOR=', ') AS ?constraints) ?tIUnits ?tIValue ?dateC ?dateP ?fundS ?fundLabel ?contactP ?downloadURL ?faq ?installInstr ?purpose ?keywords ?logo ?memReq ?os ?procReq ?publisher ?referenceP ?shortDesc ?eq ?gridType ?gridDim ?gridSpatial ?calibMethod ?resultTable ?regionName ?regionCountry ?paramAssignMethod ?dImg ?pLanguage ?repo
 (GROUP_CONCAT(DISTINCT ?cags;SEPARATOR=', ') AS ?cag)
 (GROUP_CONCAT(DISTINCT ?auth;SEPARATOR=', ') AS ?authors)
 (GROUP_CONCAT(DISTINCT ?cit;SEPARATOR=', ') AS ?citations)
@@ -30,6 +30,7 @@ WHERE {
   OPTIONAL{?_modelConfig_iri sd:description ?desc}.
   OPTIONAL{?_modelConfig_iri sd:hasConstraint ?c}.
   OPTIONAL{?_modelConfig_iri sd:hasInput ?input}.
+  OPTIONAL{?_modelConfig_iri sd:hasUsageNotes ?usageNotes}.
   OPTIONAL{?_modelConfig_iri sd:hasParameter ?param}.
   OPTIONAL{?_modelConfig_iri sd:hasOutput ?output}.
   OPTIONAL{?_modelConfig_iri sdm:hasModule ?module}.
@@ -90,4 +91,4 @@ WHERE {
   OPTIONAL{?_modelConfig_iri sdm:hasSampleExecution ?sampleEx}
   OPTIONAL{?_modelConfig_iri sdm:hasSampleResult ?sampleRes}
   
-}GROUP BY ?label ?desc ?tIUnits ?tIValue ?compLoc ?tIUnits ?tIValue ?dateC ?dateP ?fundS ?contactP ?downloadURL ?faq ?installInstr ?purpose ?keywords ?logo ?memReq ?os ?procReq ?publisher ?referenceP ?shortDesc ?eq ?gridType ?gridDim ?gridSpatial ?calibMethod ?resultTable ?regionName ?regionCountry ?paramAssignMethod ?dImg ?pLanguage ?repo ?fundLabel
+}GROUP BY ?label ?desc ?usageNotes ?tIUnits ?tIValue ?compLoc ?tIUnits ?tIValue ?dateC ?dateP ?fundS ?contactP ?downloadURL ?faq ?installInstr ?purpose ?keywords ?logo ?memReq ?os ?procReq ?publisher ?referenceP ?shortDesc ?eq ?gridType ?gridDim ?gridSpatial ?calibMethod ?resultTable ?regionName ?regionCountry ?paramAssignMethod ?dImg ?pLanguage ?repo ?fundLabel
