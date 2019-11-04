@@ -7,7 +7,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX schema: <https://schema.org/>
 
 SELECT DISTINCT ?label ?description
-from <http://ontosoft.isi.edu:3030/modelCatalog-1.2.0/data/mint@isi.edu> 
+from <http://ontosoft.isi.edu:3030/modelCatalog-1.1.0/data/mint@isi.edu> 
 WHERE {
   ?_v_iri rdfs:label ?label. 
   optional {?_v_iri schema:description ?description.}
