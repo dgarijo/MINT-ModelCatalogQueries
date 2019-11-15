@@ -17,7 +17,7 @@ SELECT ?model ?label ?desc ?doc ?dateC ?dateP ?fundS ?contactP ?downloadURL ?faq
 (GROUP_CONCAT(DISTINCT ?explD;SEPARATOR=', ') AS ?explanationDiagrams)
 (GROUP_CONCAT(DISTINCT ?index;SEPARATOR=', ') AS ?indices)
 (GROUP_CONCAT(DISTINCT ?region;SEPARATOR=', ') AS ?regions)
-from <http://ontosoft.isi.edu:3030/modelCatalog-1.1.0/data/mint@isi.edu>
+from <http://ontosoft.isi.edu:3030/modelCatalog-1.2.0/data/mint@isi.edu>
 WHERE {
   ?model a sdm:Model.
   ?model rdfs:label ?label.

@@ -8,7 +8,7 @@ prefix sdm: <https://w3id.org/okn/o/sdm#>
 prefix sd: <https://w3id.org/okn/o/sd#>
 
 SELECT DISTINCT ?model ?desc ?version ?configuration ?compLoc ?category ?sv
-from <http://ontosoft.isi.edu:3030/modelCatalog-1.1.0/data/mint@isi.edu>
+from <http://ontosoft.isi.edu:3030/modelCatalog-1.2.0/data/mint@isi.edu>
 WHERE {
   ?model a sdm:Model.
   ?model sd:hasVersion ?version.

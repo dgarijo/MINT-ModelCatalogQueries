@@ -23,7 +23,7 @@ SELECT ?label ?compLoc ?desc ?usageNotes (GROUP_CONCAT(DISTINCT ?input;SEPARATOR
 (GROUP_CONCAT(DISTINCT ?visSoft;SEPARATOR=', ') AS ?visualizationSoftware)
 (GROUP_CONCAT(DISTINCT ?sampleEx;SEPARATOR=', ') AS ?sampleExecutions)
 (GROUP_CONCAT(DISTINCT ?sampleRes;SEPARATOR=', ') AS ?sampleResults)
-from <http://ontosoft.isi.edu:3030/modelCatalog-1.1.0/data/mint@isi.edu> 
+from <http://ontosoft.isi.edu:3030/modelCatalog-1.2.0/data/mint@isi.edu> 
 WHERE {
   ?_modelConfig_iri rdfs:label ?label.
   OPTIONAL{?_modelConfig_iri sd:hasComponentLocation ?compLoc}.
