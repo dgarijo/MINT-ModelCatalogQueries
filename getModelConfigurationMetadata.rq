@@ -23,7 +23,7 @@ SELECT ?label ?compLoc ?desc ?usageNotes (GROUP_CONCAT(DISTINCT ?input;SEPARATOR
 (GROUP_CONCAT(DISTINCT ?visSoft;SEPARATOR=', ') AS ?visualizationSoftware)
 (GROUP_CONCAT(DISTINCT ?sampleEx;SEPARATOR=', ') AS ?sampleExecutions)
 (GROUP_CONCAT(DISTINCT ?sampleRes;SEPARATOR=', ') AS ?sampleResults)
-from <http://ontosoft.isi.edu:3030/modelCatalog-1.2.0/data/mint@isi.edu> 
+from <http://ontosoft.isi.edu:3030/modelCatalog-1.3.0/data/mint@isi.edu> 
 WHERE {
   ?_modelConfig_iri rdfs:label ?label.
   OPTIONAL{?_modelConfig_iri sd:hasComponentLocation ?compLoc}.
@@ -85,7 +85,7 @@ WHERE {
   OPTIONAL{?_modelConfig_iri sdm:hasModelResultTable ?resultTable}
   OPTIONAL{?_modelConfig_iri sdm:hasRegion ?region.
            ?region rdfs:label ?regionName.
-           ?region sdm:country ?regionCountry}
+           ?region sdm:partOf ?regionCountry}
   OPTIONAL{?_modelConfig_iri sdm:parameterAssignmentMethod ?paramAssignMethod}
   OPTIONAL{?_modelConfig_iri sdm:compatibleVisualizationSoftware ?visSoft}
   OPTIONAL{?_modelConfig_iri sdm:hasSampleExecution ?sampleEx}

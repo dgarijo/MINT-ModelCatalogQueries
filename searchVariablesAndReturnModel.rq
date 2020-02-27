@@ -9,7 +9,7 @@ PREFIX sdm: <https://w3id.org/okn/o/sdm#>
 prefix sd: <https://w3id.org/okn/o/sd#>
 
 select distinct ?w ?desc ?model ?modelV ?c 
-from <http://ontosoft.isi.edu:3030/modelCatalog-1.2.0/data/mint@isi.edu> 
+from <http://ontosoft.isi.edu:3030/modelCatalog-1.3.0/data/mint@isi.edu> 
 where {
   VALUES ?property { sd:description rdfs:label }
   ?w ?property ?desc.

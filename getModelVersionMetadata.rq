@@ -16,7 +16,7 @@ SELECT ?_modelV_iri ?label ?vId ?desc ?doc ?dateC ?dateP ?fundS ?contactP ?downl
 (GROUP_CONCAT(DISTINCT ?typicalD;SEPARATOR=', ') AS ?typicalDataSource)
 (GROUP_CONCAT(DISTINCT ?scr;SEPARATOR=', ') AS ?screenshots)
 (GROUP_CONCAT(DISTINCT ?explD;SEPARATOR=', ') AS ?explanationDiagrams)
-from <http://ontosoft.isi.edu:3030/modelCatalog-1.2.0/data/mint@isi.edu>
+from <http://ontosoft.isi.edu:3030/modelCatalog-1.3.0/data/mint@isi.edu>
 WHERE {
   ?_modelV_iri a sd:SoftwareVersion.
   ?_modelV_iri rdfs:label ?label.

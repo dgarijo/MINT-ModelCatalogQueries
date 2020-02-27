@@ -1,1 +1,1 @@
-http://ontosoft.isi.edu:3030/modelCatalog-1.2.0/query
+http://ontosoft.isi.edu:3030/modelCatalog-1.3.0/query
